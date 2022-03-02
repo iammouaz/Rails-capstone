@@ -1,0 +1,27 @@
+<%= form_with(model: group_investment) do |form| %>
+  <% if group_investment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(group_investment.errors.count, "error") %> prohibited this group_investment from being saved:</h2>
+
+      <ul>
+        <% group_investment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :group_id, style: "display: block" %>
+    <%= form.text_field :group_id %>
+  </div>
+
+  <div>
+    <%= form.label :investment_id, style: "display: block" %>
+    <%= form.text_field :investment_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
