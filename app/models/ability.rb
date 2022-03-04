@@ -4,6 +4,5 @@ class Ability
   def initialize(user)
     can :manage, Group, user_id: user.id
     can :manage, Investment, user_id: user.id
-    can :manage, GroupInvestment
   end
 end
