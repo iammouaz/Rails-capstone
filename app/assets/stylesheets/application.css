@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+  --green: #60b625;
+}
+
+.gray {
+  color: lightgray !important;
+}
+
+.bottom {
+  padding: 10px !important;
+  background-color: var(--green) !important;
+}
+
+.bottom-btn {
+  background-color: transparent !important;
+  color: white !important;
+}
