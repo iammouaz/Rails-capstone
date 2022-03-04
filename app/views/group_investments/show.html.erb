@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @group_investment %>
+
+<div>
+  <%= link_to "Edit this group investment", edit_group_investment_path(@group_investment) %> |
+  <%= link_to "Back to group investments", group_investments_path %>
+
+  <%= button_to "Destroy this group investment", @group_investment, method: :delete %>
+</div>
