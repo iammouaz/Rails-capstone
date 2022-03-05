@@ -10,25 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_164326) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_02_08_160316) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "group_investments", force: :cascade do |t|
-    t.bigint "group_id", null: false
-    t.bigint "investment_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_group_investments_on_group_id"
-    t.index ["investment_id"], name: "index_group_investments_on_investment_id"
-  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "icon"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
@@ -36,9 +26,11 @@ ActiveRecord::Schema.define(version: 2022_02_07_164326) do
   create_table "investments", force: :cascade do |t|
     t.string "name"
     t.float "amount"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.index ["group_id"], name: "index_investments_on_group_id"
     t.index ["user_id"], name: "index_investments_on_user_id"
   end
 
@@ -46,17 +38,16 @@ ActiveRecord::Schema.define(version: 2022_02_07_164326) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: 6
-    t.datetime "remember_created_at", precision: 6
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "group_investments", "groups"
-  add_foreign_key "group_investments", "investments"
   add_foreign_key "groups", "users"
+  add_foreign_key "investments", "groups"
   add_foreign_key "investments", "users"
 end

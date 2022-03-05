@@ -1,12 +1,17 @@
-<div id="<%= dom_id group %>">
-  <p>
-    <strong>Name:</strong>
-    <%= group.name %>
-  </p>
-
-  <p>
-    <strong>Icon:</strong>
-    <%= group.icon %>
-  </p>
-
-</div>
+<article id="<%= dom_id group %>" class="media">
+  <div class="media-left">
+    <figure class="image is-96x96">
+      <img src="<%= group.icon %>" alt="logo">
+    </figure>
+  </div>
+  <div class="media-content">
+    <div class="content">
+      <h2 class="subtitle is-3">
+        <%= group.name %>
+      </h2>
+    </div>
+  </div>
+  <div class="subtitle is-4">
+    Invested: $ <%= (group.investments.collect { |i| i.amount }).sum.round(2) %>
+  </div>
+</article>

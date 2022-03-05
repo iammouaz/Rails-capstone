@@ -7,15 +7,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <%= javascript_importmap_tags %>
   </head>
-
-  <body>
-    <div>
-      <p class="notice"><%= notice %></p>
+  <body class="has-navbar-fixed-top has-navbar-fixed-bottom">
+    <%= render "shared/nav" %>
+    <br><br><br>
+    <div class="has-background-color container is-max-widescreen">
       <p class="alert"><%= alert %></p>
+      <%= yield %>
     </div>
-    <%= yield %>
   </body>
 </html>

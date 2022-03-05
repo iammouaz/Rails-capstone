@@ -1,14 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Investments</h1>
+<h1 class="title is-1">Investments on <%= @group_name.name %></h1>
 
 <div id="investments">
   <% @investments.each do |investment| %>
-    <%= render investment %>
-    <p>
-      <%= link_to "Show this investment", investment %>
-    </p>
+    <div class="box">
+      <div class="columns">
+        <%= render investment %>
+        <div class="column is-one-fifth">
+          <%= button_to "Delete", group_investment_path(id: investment.id), {method: :delete, class: "button is-danger is-medium"} %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New investment", new_investment_path %>
+<div class="navbar is-fixed-bottom bottom">
+  <%= link_to "New Investment", new_group_investment_path, {method: :get, class: "button is-large is-outlined is-fullwidth bottom-btn"} %>
+</div>

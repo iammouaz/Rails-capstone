@@ -4,7 +4,9 @@ class InvestmentsController < ApplicationController
 
   # GET /investments or /investments.json
   def index
-    @investments = Investment.all
+    @investments = Investment.where(group_id: params[:group_id])
+    @group_name = Group.find(params[:group_id])
+    session[:current_page] = 'Investments'
   end
 
   # GET /investments/1 or /investments/1.json
@@ -20,17 +22,13 @@ class InvestmentsController < ApplicationController
 
   # POST /investments or /investments.json
   def create
-    @investment = Investment.new(investment_params)
-
-    respond_to do |format|
-      if @investment.save
-        format.html { redirect_to investment_url(@investment), notice: 'Investment was successfully created.' }
-        format.json { render :show, status: :created, location: @investment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @investment.errors, status: :unprocessable_entity }
+    params[:investment][:group_id].each do |g|
+      unless g.empty?
+        @investment = Investment.new(investment_params.merge(user_id: current_user.id, group_id: g))
+        @investment.save
       end
     end
+    redirect_to group_investments_path
   end
 
   # PATCH/PUT /investments/1 or /investments/1.json
@@ -51,7 +49,7 @@ class InvestmentsController < ApplicationController
     @investment.destroy
 
     respond_to do |format|
-      format.html { redirect_to investments_url, notice: 'Investment was successfully destroyed.' }
+      format.html { redirect_to group_investments_url, notice: 'Investment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -11,17 +11,15 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="field">
+    <%= form.text_field :name, autofocus: true, class: "input is-medium", placeholder: "Group or Company name" %>
   </div>
 
-  <div>
-    <%= form.label :icon, style: "display: block" %>
-    <%= form.text_field :icon %>
+  <div class="field">
+    <%= form.text_field :icon, class: "input is-medium", placeholder: "URL address for icon" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+    <%= form.submit "Create Group", class: "button is-success is-large is-fullwidth" %>
   </div>
 <% end %>
