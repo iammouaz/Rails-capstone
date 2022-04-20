@@ -1,0 +1,25 @@
+<%= form_with(model: group) do |form| %>
+  <% if group.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+        <% group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_field :name, autofocus: true, class: "input is-medium", placeholder: "Group or Company name" %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :icon, class: "input is-medium", placeholder: "URL address for icon" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create Group", class: "button is-success is-large is-fullwidth" %>
+  </div>
+<% end %>

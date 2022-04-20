@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<div id="groups">
+  <% @groups.each do |group| %>
+    <%= link_to group_investments_path(group), method: :get, class: "box" do %>
+      <%= render group %>
+    <% end %>
+  <% end %>
+</div>
+<div class="navbar is-fixed-bottom bottom">
+  <%= link_to "New Group", new_group_path, {method: :get, class: "button is-large is-outlined is-fullwidth bottom-btn"} %>
+</div>

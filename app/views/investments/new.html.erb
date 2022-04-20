@@ -1,0 +1,5 @@
+<%= render "form", investment: @investment %>
+<br>
+<div class="navbar is-fixed-bottom bottom">
+  <%= link_to "Back to Investments", group_investments_path(params['group_id']), {method: :get, class: "button is-large is-outlined is-fullwidth bottom-btn"} %>
+</div>

@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  username : postgres #username of db
+  password : 123 #password of db, if no password then make it blank
+
+development:
+  <<: *default
+  database: db_name
+
+test:
+  <<: *default
+  database: db_name
+
+production:
+  <<: *default
+  database: db_name 

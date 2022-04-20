@@ -1,0 +1,36 @@
+<%= form_with(model: [:group, investment]) do |form| %>
+  <% if investment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(investment.errors.count, "error") %> prohibited this investment from being saved:</h2>
+
+      <ul>
+        <% investment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.text_field :name, autofocus: true, class: "input is-medium", placeholder: "Type of investment" %>
+  </div>
+
+  <div class="field">
+    <p class="control has-icons-left">
+    <%= form.text_field :amount, class: "input is-medium", placeholder: "Money invested" %>
+      <span class="icon is-left">
+        $
+      </span>
+    </p>
+  </div>
+
+  <div class="field">
+    <div class="select is-multiple is-large is-fullwidth">
+      <%= form.collection_select(:group_id, Group.all, :id, :name, {}, {:multiple => true}) %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create Investment", class: "button is-success is-large is-fullwidth" %>
+  </div>
+<% end %>
